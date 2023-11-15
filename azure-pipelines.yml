@@ -14,10 +14,10 @@ stages:
           ResourceGroupName: ''
           ResourceGroupLocation: 'eastus'
           EnableSentinel: true
-          analyticsRulesFile: #SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
-          huntingRulesFile: #SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
-          PlaybooksFolder: #Playbooks/ # leave empty if you dont want to configure Playbooks
-          ConnectorsFile: #SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
+          analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
+          huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
+          PlaybooksFolder: Playbooks/ # leave empty if you dont want to configure Playbooks
+          ConnectorsFile: SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
           WorkbooksFolder: #Workbooks/
           WorkbookSourceId: '' # leave empty if you dont want to configure Workbook
 
@@ -35,10 +35,10 @@ stages:
           ResourceGroupName: ''
           ResourceGroupLocation: 'eastus'
           EnableSentinel: true
-          analyticsRulesFile: #SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
-          huntingRulesFile: #SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
-          PlaybooksFolder: #Playbooks/ # leave empty if you dont want to configure Playbooks
-          ConnectorsFile: #SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
+          analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
+          huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
+          PlaybooksFolder: Playbooks/ # leave empty if you dont want to configure Playbooks
+          ConnectorsFile: SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
           WorkbooksFolder: #Workbooks/
           WorkbookSourceId: '' # leave empty if you dont want to configure Workbook
 
@@ -56,9 +56,9 @@ stages:
           ResourceGroupName: ''
           ResourceGroupLocation: 'eastus'
           EnableSentinel: true
-          analyticsRulesFile: #SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
-          huntingRulesFile: #SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
-          PlaybooksFolder: #Playbooks/ # leave empty if you dont want to configure Playbooks
-          ConnectorsFile: #SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
+          analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
+          huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
+          PlaybooksFolder: Playbooks/ # leave empty if you dont want to configure Playbooks
+          ConnectorsFile: SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
           WorkbooksFolder: #Workbooks/
           WorkbookSourceId: '' # leave empty if you dont want to configure Workbook
