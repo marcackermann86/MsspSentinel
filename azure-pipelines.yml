@@ -1,5 +1,9 @@
 # This is the main pipelien which covers all the stages
 # The tasks are stored in pipelines/steps.yml
+pool:  
+  name: local 
+
+trigger: none 
 
 stages:
   - stage: Dev
