@@ -22,6 +22,10 @@ parameters:
     displayName: Deploy resource group for Sentinel if not deployed
     type: boolean
 
+  - name: DeployLAW
+    displayName: Deploy log analytics workspace for Sentinel if not deployed
+    type: boolean
+
   - name: EnableSentinel
     displayName: Enable Azure Sentinel if not enabled
     type: boolean
@@ -86,6 +90,17 @@ jobs:
                   ScriptType: 'InlineScript'
                   Inline: |
                     New-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }} -Tag @{H="123456"} -Confirm:$false
+                  azurePowerShellVersion: 'LatestVersion'
+                  pwsh: true
+
+            - ${{ if eq(parameters.DeployLAW, true) }}:
+              - task: AzurePowerShell@5
+                displayName: 'Deploy log analytics workspace for Sentinel'
+                inputs:
+                  azureSubscription: ${{ parameters.azureSubscription }}
+                  ScriptType: 'InlineScript'
+                  Inline: |
+                    New-AzOperationalInsightsWorkspace -Location ${{ parameters.ResourceGroupLocation }} -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -Tag @{H="123456"} -Confirm:$false
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
 
