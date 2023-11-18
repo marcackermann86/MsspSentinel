@@ -17,8 +17,6 @@ stages:
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
-          DeployRG: true
-          DeployLAW: true
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
           huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
@@ -40,8 +38,6 @@ stages:
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
-          DeployRG: true
-          DeployLAW: true
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
           huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
@@ -63,8 +59,6 @@ stages:
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
-          DeployRG: true
-          DeployLAW: true
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
           huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
