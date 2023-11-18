@@ -82,31 +82,17 @@ jobs:
                   Import-Module AzSentinel
                 pwsh: true
 
-          - ${{ if eq(parameters.DeployRG, true) }}:
-            - task: AzurePowerShell@5
-                displayName: 'Check for resource group'
-                inputs:
-                  azureSubscription: ${{ parameters.azureSubscription }}
-                  ScriptType: 'InlineScript'
-                  Inline: |
-                    $rg = Get-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue -Confirm:$false
-                    if ($rg){
-                        Write-Host "##vso[task.setvariable variable=rgExists]true"
-                    }
-                    else{
-                        Write-Host "##vso[task.setvariable variable=rgExists]false"
-                    }
-                  azurePowerShellVersion: 'LatestVersion'
-                  pwsh: true
-
-            - ${{ if eq($(rgExists), false) }}:
+            - ${{ if eq(parameters.DeployRG, true) }}:
               - task: AzurePowerShell@5
                 displayName: 'Deploy resource group for Sentinel resources'
                 inputs:
                   azureSubscription: ${{ parameters.azureSubscription }}
                   ScriptType: 'InlineScript'
                   Inline: |
-                    New-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }} -Tag @{H="123456"} -Confirm:$false
+                    $rg = Get-AzResourceGroup -ResourceGroupName ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue
+                    if ($null -eq $rg) {
+                      New-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }} -Tag @{H="123456"}
+                    }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
 
