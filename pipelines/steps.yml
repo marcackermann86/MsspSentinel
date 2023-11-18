@@ -133,18 +133,13 @@ jobs:
                   pwsh: true
 
             - ${{ if ne(parameters.PlaybooksFolder, '') }}:
-              - task: AzurePowerShell@4
+              - task: AzurePowerShell@5
                 displayName: 'Create and Update Playbooks'
                 inputs:
-                  azureSubscription: ${{ parameters.classicConnection }}
+                  azureSubscription: ${{ parameters.azureSubscription }}
                   ScriptType: 'InlineScript'
                   Inline: |
                     $armTemplateFiles = Get-ChildItem -Path ${{ parameters.PlaybooksFolder }} -Filter *.json
-
-                    $rg = Get-AzResourceGroup -ResourceGroupName ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue
-                    if ($null -eq $rg) {
-                      New-AzResourceGroup -ResourceGroupName ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }}
-                    }
 
                     foreach ($armTemplate in $armTemplateFiles) {
                       New-AzResourceGroupDeployment -ResourceGroupName ${{ parameters.ResourceGroupName }} -TemplateFile $armTemplate
@@ -186,7 +181,7 @@ jobs:
                   pwsh: true
 
             - ${{ if ne(parameters.WorkbooksFolder, '')}}:
-              - task: AzurePowerShell@4
+              - task: AzurePowerShell@5
                 displayName: 'Create and Update Workbooks'
                 inputs:
                   azureSubscription: ${{ parameters.azureSubscription }}
