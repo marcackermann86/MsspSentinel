@@ -66,7 +66,7 @@ jobs:
     environment: ${{ parameters.environment }}
     strategy:
       runOnce:
-        deploy:
+        predeploy:
           steps:
             - checkout: self
             - task: PowerShell@2
@@ -105,7 +105,9 @@ jobs:
                     }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
-
+        deploy:
+          steps:
+            - checkout: self
             - ${{ if eq(parameters.EnableSentinel, true) }}:
               - task: AzurePowerShell@5
                 displayName: 'Enable and configure Azure Sentinel'
