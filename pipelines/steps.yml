@@ -11,7 +11,11 @@ parameters:
     type: string
 
   - name: azureSubscription
-    displayName: Enter the Azure Serviceconntion
+    displayName: Enter the Azure RM Serviceconntion
+    type: string
+
+  - name: classicConnection
+    displayName: Enter the Azure Classic Serviceconntion
     type: string
 
   - name: SubscriptionId
@@ -132,7 +136,7 @@ jobs:
               - task: AzurePowerShell@4
                 displayName: 'Create and Update Playbooks'
                 inputs:
-                  azureSubscription: ${{ parameters.azureSubscription }}
+                  azureSubscription: ${{ parameters.classicConnection }}
                   ScriptType: 'InlineScript'
                   Inline: |
                     $armTemplateFiles = Get-ChildItem -Path ${{ parameters.PlaybooksFolder }} -Filter *.json
@@ -152,7 +156,7 @@ jobs:
               - task: AzurePowerShell@5
                 displayName: 'Create and Update Alert Rules'
                 inputs:
-                  azureSubscription: ${{ parameters.azureSubscription }}
+                  azureSubscription: ${{ parameters.classicConnection }}
                   ScriptType: 'InlineScript'
                   Inline: |
                     Import-AzSentinelAlertRule -SubscriptionId ${{ parameters.SubscriptionId }} -WorkspaceName ${{ parameters.WorkspaceName }} -SettingsFile ${{ parameters.analyticsRulesFile }}
@@ -163,7 +167,7 @@ jobs:
               - task: AzurePowerShell@5
                 displayName: 'Create and Update Hunting Rules'
                 inputs:
-                  azureSubscription: ${{ parameters.azureSubscription }}
+                  azureSubscription: ${{ parameters.classicConnection }}
                   ScriptType: 'InlineScript'
                   Inline: |
                     Import-AzSentinelHuntingRule -SubscriptionId ${{ parameters.SubscriptionId }} -WorkspaceName ${{ parameters.WorkspaceName }} -SettingsFile ${{ parameters.huntingRulesFile }} -Confirm:$false
@@ -174,7 +178,7 @@ jobs:
               - task: AzurePowerShell@5
                 displayName: 'Create and Update Connectors'
                 inputs:
-                  azureSubscription: ${{ parameters.azureSubscription }}
+                  azureSubscription: ${{ parameters.classicConnection }}
                   ScriptType: 'InlineScript'
                   Inline: |
                     Import-AzSentinelDataConnector -SubscriptionId ${{ parameters.SubscriptionId }} -Workspace ${{ parameters.WorkspaceName }} -SettingsFile ${{ parameters.ConnectorsFile }}
@@ -185,7 +189,7 @@ jobs:
               - task: AzurePowerShell@4
                 displayName: 'Create and Update Workbooks'
                 inputs:
-                  azureSubscription: ${{ parameters.azureSubscription }}
+                  azureSubscription: ${{ parameters.classicConnection }}
                   ScriptType: 'InlineScript'
                   Inline: |
                     $armTemplateFiles = Get-ChildItem -Path ${{ parameters.WorkbooksFolder }} -Filter *.json
