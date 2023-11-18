@@ -82,6 +82,7 @@ jobs:
                   Import-Module AzSentinel
                 pwsh: true
 
+          - ${{ if eq(parameters.DeployRG, true) }}:
             - task: AzurePowerShell@5
                 displayName: 'Check for resource group'
                 inputs:
