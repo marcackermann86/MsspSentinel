@@ -18,14 +18,6 @@ parameters:
     displayName: Enter the Azure Sentinel Workspace name
     type: string
 
-  - name: DeployRG
-    displayName: Deploy resource group for Sentinel if not deployed
-    type: boolean
-
-  - name: DeployLAW
-    displayName: Deploy log analytics workspace for Sentinel if not deployed
-    type: boolean
-
   - name: EnableSentinel
     displayName: Enable Azure Sentinel if not enabled
     type: boolean
@@ -82,7 +74,7 @@ jobs:
                   Import-Module AzSentinel
                 pwsh: true
 
-            - ${{ if eq(parameters.DeployRG, true) }}:
+            - ${{ if eq(parameters.EnableSentinel, true) }}:
               - task: AzurePowerShell@5
                 displayName: 'Deploy resource group for Sentinel resources'
                 inputs:
@@ -96,14 +88,17 @@ jobs:
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
 
-            - ${{ if eq(parameters.DeployLAW, true) }}:
+            - ${{ if eq(parameters.EnableSentinel, true) }}:
               - task: AzurePowerShell@5
                 displayName: 'Deploy log analytics workspace for Sentinel'
                 inputs:
                   azureSubscription: ${{ parameters.azureSubscription }}
                   ScriptType: 'InlineScript'
                   Inline: |
-                    New-AzOperationalInsightsWorkspace -Location ${{ parameters.ResourceGroupLocation }} -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -Tag @{H="123456"} -Confirm:$false
+                    $ws = Get-AzOperationalInsightsWorkspace -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue
+                    if ($null -eq $ws) {
+                      New-AzOperationalInsightsWorkspace -Location ${{ parameters.ResourceGroupLocation }} -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -Tag @{H="123456"} -Confirm:$false
+                    }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
 
