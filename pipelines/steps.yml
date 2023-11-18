@@ -18,6 +18,10 @@ parameters:
     displayName: Enter the Azure Sentinel Workspace name
     type: string
 
+  - name: DeployRG
+    displayName: Deploy resource group for Sentinel if not deployed
+    type: boolean
+
   - name: EnableSentinel
     displayName: Enable Azure Sentinel if not enabled
     type: boolean
