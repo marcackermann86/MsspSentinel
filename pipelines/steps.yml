@@ -108,6 +108,15 @@ jobs:
         deploy:
           steps:
             - checkout: self
+            - task: PowerShell@2
+              displayName: 'Prepare environemnt'
+              inputs:
+                targetType: 'Inline'
+                script: |
+                  Install-Module AzSentinelTools -Scope CurrentUser -Force
+                  Import-Module AzSentinelTools
+                pwsh: true
+                
             - ${{ if eq(parameters.EnableSentinel, true) }}:
               - task: AzurePowerShell@5
                 displayName: 'Enable and configure Azure Sentinel'
