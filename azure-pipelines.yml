@@ -13,11 +13,12 @@ stages:
         parameters:
           environment: Dev
           azureSubscription: 'e078bf8e-61c1-4cd1-a00f-12e22979d32e'
-          WorkspaceName: 'Sentinel-Dev' # Enter the Azure Sentinel Workspace name
+          WorkspaceName: 'H123456-dev' # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
           DeployRG: true
+          DeployLAW: true
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
           huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
@@ -35,11 +36,12 @@ stages:
         parameters:
           environment: Staging
           azureSubscription: 'e078bf8e-61c1-4cd1-a00f-12e22979d32e'
-          WorkspaceName: 'Sentinel-Staging' # Enter the Azure Sentinel Workspace name
+          WorkspaceName: 'H123456-staging' # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
           DeployRG: true
+          DeployLAW: true
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
           huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
@@ -57,11 +59,12 @@ stages:
         parameters:
           environment: Production
           azureSubscription: 'e078bf8e-61c1-4cd1-a00f-12e22979d32e'
-          WorkspaceName: 'Sentinel-Prod'  # Enter the Azure Sentinel Workspace name
+          WorkspaceName: 'H123456-prod'  # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
           DeployRG: true
+          DeployLAW: true
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
           huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
