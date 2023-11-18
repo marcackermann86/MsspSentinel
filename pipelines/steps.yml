@@ -88,12 +88,12 @@ jobs:
                   azureSubscription: ${{ parameters.azureSubscription }}
                   ScriptType: 'InlineScript'
                   Inline: |
-                    Get-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -ErrorVariable notPresent -ErrorAction SilentlyContinue -Confirm:$false
-                    if ($notPresent){
-                        Write-Host "##vso[task.setvariable variable=rgExists;isOutput=true]false"
+                    $rg = Get-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue -Confirm:$false
+                    if ($rg){
+                        Write-Host "##vso[task.setvariable variable=rgExists;isOutput=true]true"
                     }
                     else{
-                        Write-Host "##vso[task.setvariable variable=rgExists;isOutput=true]true"
+                        Write-Host "##vso[task.setvariable variable=rgExists;isOutput=true]false"
                     }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
