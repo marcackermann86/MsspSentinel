@@ -13,9 +13,9 @@ stages:
         parameters:
           environment: Dev
           azureSubscription: 'e078bf8e-61c1-4cd1-a00f-12e22979d32e'
-          WorkspaceName: '' # Enter the Azure Sentinel Workspace name
+          WorkspaceName: 'Sentinel-Dev' # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
-          ResourceGroupName: 'Sentinel-Dev'
+          ResourceGroupName: ''
           ResourceGroupLocation: 'eastus'
           EnableSentinel: true
           analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
