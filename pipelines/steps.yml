@@ -6,6 +6,10 @@ parameters:
     displayName: environment name
     type: string
 
+  - name: hNumber
+    displayName: Enter the customers hosting number
+    type: string
+
   - name: azureSubscription
     displayName: Enter the Azure Serviceconntion
     type: string
@@ -83,7 +87,7 @@ jobs:
                   Inline: |
                     $rg = Get-AzResourceGroup -ResourceGroupName ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue
                     if ($null -eq $rg) {
-                      New-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }} -Tag @{H="123456"}
+                      New-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }} -Tag @{H="${{ parameters.hNumber }}"}
                     }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
@@ -97,7 +101,7 @@ jobs:
                   Inline: |
                     $ws = Get-AzOperationalInsightsWorkspace -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue
                     if ($null -eq $ws) {
-                      New-AzOperationalInsightsWorkspace -Location ${{ parameters.ResourceGroupLocation }} -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -Tag @{H="123456"} -Confirm:$false
+                      New-AzOperationalInsightsWorkspace -Location ${{ parameters.ResourceGroupLocation }} -Name ${{ parameters.WorkspaceName }} -ResourceGroupName ${{ parameters.ResourceGroupName }} -Tag @{H="${{ parameters.hNumber }}"} -RetentionInDays 90 -Sku pergb2018 -Confirm:$false
                     }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
