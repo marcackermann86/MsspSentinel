@@ -91,10 +91,10 @@ jobs:
                   Inline: |
                     $rg = Get-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -ErrorAction SilentlyContinue -Confirm:$false
                     if ($rg){
-                        Write-Host "##vso[task.setvariable variable=rgExists;isOutput=true]true"
+                        Write-Host "##vso[task.setvariable variable=rgExists]true"
                     }
                     else{
-                        Write-Host "##vso[task.setvariable variable=rgExists;isOutput=true]false"
+                        Write-Host "##vso[task.setvariable variable=rgExists]false"
                     }
                   azurePowerShellVersion: 'LatestVersion'
                   pwsh: true
