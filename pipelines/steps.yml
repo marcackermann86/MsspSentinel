@@ -74,6 +74,17 @@ jobs:
                   Import-Module AzSentinel
                 pwsh: true
 
+            - ${{ if eq(parameters.DeployRG, true) }}:
+              - task: AzurePowerShell@5
+                displayName: 'Deploy resource group for Sentinel resources'
+                inputs:
+                  azureSubscription: ${{ parameters.azureSubscription }}
+                  ScriptType: 'InlineScript'
+                  Inline: |
+                    New-AzResourceGroup -Name ${{ parameters.ResourceGroupName }} -Location ${{ parameters.ResourceGroupLocation }} -Tag @{H="123456"} -Confirm:$false
+                  azurePowerShellVersion: 'LatestVersion'
+                  pwsh: true
+
             - ${{ if eq(parameters.EnableSentinel, true) }}:
               - task: AzurePowerShell@5
                 displayName: 'Enable and configure Azure Sentinel'
