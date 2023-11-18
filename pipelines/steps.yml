@@ -74,8 +74,8 @@ jobs:
               inputs:
                 targetType: 'Inline'
                 script: |
-                  Install-Module AzSentinel -Scope CurrentUser -Force
-                  Import-Module AzSentinel
+                  Install-Module AzSentinelTools -Scope CurrentUser -Force
+                  Import-Module AzSentinelTools
                 pwsh: true
 
             - ${{ if eq(parameters.EnableSentinel, true) }}:
