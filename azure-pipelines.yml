@@ -12,7 +12,7 @@ stages:
       - template: pipelines/steps.yml
         parameters:
           environment: Dev
-          azureSubscription: 'Azure subscription 1'
+          azureSubscription: '6880164a-cb81-4712-bf53-ac4bb12dfcaf'
           WorkspaceName: '' # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: 'Sentinel-Dev'
@@ -33,7 +33,7 @@ stages:
       - template: pipelines/steps.yml
         parameters:
           environment: Staging
-          azureSubscription: 'Azure subscription 1'
+          azureSubscription: '6880164a-cb81-4712-bf53-ac4bb12dfcaf'
           WorkspaceName: 'Sentinel-Staging' # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: ''
@@ -54,7 +54,7 @@ stages:
       - template: pipelines/steps.yml
         parameters:
           environment: Production
-          azureSubscription: 'Azure subscription 1'
+          azureSubscription: '6880164a-cb81-4712-bf53-ac4bb12dfcaf'
           WorkspaceName: 'Sentinel-Prod'  # Enter the Azure Sentinel Workspace name
           SubscriptionId: 'b00ab83e-b693-4303-b5ad-8790d8c81df4'
           ResourceGroupName: ''
