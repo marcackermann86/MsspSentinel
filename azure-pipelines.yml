@@ -20,10 +20,10 @@ stages:
           ResourceGroupName: 'H123456-rg'
           ResourceGroupLocation: 'eastus'
           EnableSentinel: true
-          analyticsRulesFile: SettingFiles/AlertRules.json # leave empty if you dont want to configure Analytic rules
-          huntingRulesFile: SettingFiles/HuntingRules.json # leave empty if you dont want to configure Hunting rules
-          PlaybooksFolder: Playbooks/ # leave empty if you dont want to configure Playbooks
-          ConnectorsFile: SettingFiles/DataConnectors.json # leave empty if you dont want to configure Connectors
+          analyticsRulesFile: '$(Pipeline.Workspace)/SettingFiles/AlertRules.json' # leave empty if you dont want to configure Analytic rules
+          huntingRulesFile: '$(Pipeline.Workspace)/SettingFiles/HuntingRules.json' # leave empty if you dont want to configure Hunting rules
+          PlaybooksFolder: '$(Pipeline.Workspace)/Playbooks/' # leave empty if you dont want to configure Playbooks
+          ConnectorsFile: '$(Pipeline.Workspace)/SettingFiles/DataConnectors.json' # leave empty if you dont want to configure Connectors
           WorkbooksFolder: #Workbooks/
           WorkbookSourceId: '' # leave empty if you dont want to configure Workbook
 
