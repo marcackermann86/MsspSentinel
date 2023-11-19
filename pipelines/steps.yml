@@ -139,7 +139,7 @@ jobs:
                   azureSubscription: ${{ parameters.azureSubscription }}
                   ScriptType: 'InlineScript'
                   Inline: |
-                    $armTemplateFiles = Get-ChildItem -Path ${{ parameters.PlaybooksFolder }} -Filter *.json
+                    $armTemplateFiles = Get-ChildItem -Path $(Pipeline.Workspace)${{ parameters.PlaybooksFolder }} -Filter *.json
 
                     foreach ($armTemplate in $armTemplateFiles) {
                       New-AzResourceGroupDeployment -ResourceGroupName ${{ parameters.ResourceGroupName }} -TemplateFile $armTemplate
